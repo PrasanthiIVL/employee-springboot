@@ -42,5 +42,12 @@ public class EmployeeController {
 	public ResponseEntity<Employee> modifyEmployee(@RequestBody Employee employee, @PathVariable("id") int id){
 		return new ResponseEntity<Employee>(employeeRepository.save(employee), HttpStatus.OK);
 	}
+	
+	@RequestMapping(value = "/employee/{id}", method = RequestMethod.DELETE)
+	public ResponseEntity<Employee> deleteEmployee(@PathVariable("id") int id){
+		Employee employee = employeeRepository.findBy_id(id);
+		employeeRepository.deleteBy_id(id);
+		return new ResponseEntity<Employee>(employee, HttpStatus.OK);
+	}
 
 }
